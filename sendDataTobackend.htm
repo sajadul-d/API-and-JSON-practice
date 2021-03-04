@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send data to the backend</title>
+</head>
+<body>
+    <h2>Javascript object Notation</h2>
+
+    <input id="user" type="text" placeholder="username">
+    <br>
+    <br>
+    <input id="opinion" type="text" placeholder="write your opinion">
+    <br>
+    <br>
+    <button id="submit">Submit</button>
+    
+    <script>
+         document.getElementById("submit").addEventListener("click",function(){
+             const user = document.getElementById("user").value;
+             const opinion = document.getElementById("opinion").value;
+             const post = {title:user,body:opinion}; 
+             postToServer(post);
+         })
+
+         
+        function postToServer(postInfo){
+         fetch('https://jsonplaceholder.typicode.com/posts', {z
+         method: 'POST',
+         body: JSON.stringify(postInfo),
+         headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+   },
+   })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+        }
+    </script>
+</body>
+</html>
